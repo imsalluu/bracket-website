@@ -46,6 +46,13 @@ export default function PrivacyPolicy() {
                 We do not share your personal information with companies, organizations, or individuals outside of Bracket except in the following cases: with your consent, for external processing, or for legal reasons.
               </p>
             </section>
+
+            <section className="pt-8 border-t border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-4">5. Contact Us</h2>
+              <p className="leading-relaxed">
+                If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support.thebracket@gmail.com" className="text-primary hover:underline">support.thebracket@gmail.com</a>.
+              </p>
+            </section>
           </div>
         </Section>
       </main>

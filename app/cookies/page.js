@@ -39,6 +39,13 @@ export default function CookiePolicy() {
                 You have the right to decide whether to accept or reject cookies. You can set or amend your web browser controls to accept or refuse cookies.
               </p>
             </section>
+
+            <section className="pt-8 border-t border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-4">4. Contact Us</h2>
+              <p className="leading-relaxed">
+                For more information about our use of cookies or other technologies, please email us at <a href="mailto:support.thebracket@gmail.com" className="text-primary hover:underline">support.thebracket@gmail.com</a>.
+              </p>
+            </section>
           </div>
         </Section>
       </main>

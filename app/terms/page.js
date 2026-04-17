@@ -46,6 +46,13 @@ export default function TermsOfService() {
                 In no event shall Bracket be liable for any indirect, incidental, special, consequential or punitive damages, or any loss of profits or revenues.
               </p>
             </section>
+
+            <section className="pt-8 border-t border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-4">5. Contact Us</h2>
+              <p className="leading-relaxed">
+                For any questions regarding these Terms, please reach out to <a href="mailto:support.thebracket@gmail.com" className="text-primary hover:underline">support.thebracket@gmail.com</a>.
+              </p>
+            </section>
           </div>
         </Section>
       </main>

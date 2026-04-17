@@ -9,7 +9,7 @@ export default function About() {
     <>
       <CustomCursor />
       <Navbar />
-      
+
       <main className="flex-1 pt-32">
         {/* About Hero */}
         <Section className="py-20 px-6 max-w-7xl mx-auto text-center">
@@ -17,7 +17,7 @@ export default function About() {
             The Story Behind <span className="text-primary italic">Bracket</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            We started Bracket with a simple mission: to build the digital systems that 
+            We started Bracket with a simple mission: to build the digital systems that
             empower the world's most ambitious brands to scale without limits.
           </p>
         </Section>
@@ -26,19 +26,19 @@ export default function About() {
         <Section className="py-32 bg-bracket-dark px-6">
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <div className="aspect-square bg-bracket-gray rounded-[3rem] border border-white/5 relative overflow-hidden flex items-center justify-center p-12">
-               <div className="text-[12rem] font-black text-white/5 italic select-none">B [ ]</div>
-               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent" />
+              <div className="text-[12rem] font-black text-white/5 italic select-none">B [ ]</div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent" />
             </div>
             <div>
               <h2 className="text-4xl md:text-6xl font-black mb-8">Who We Are</h2>
               <div className="space-y-6 text-lg text-gray-400">
                 <p>
-                  At Bracket, we believe that technology should be an accelerator, not a bottleneck. 
-                  Our team of engineers, designers, and AI specialists work at the intersection 
+                  At Bracket, we believe that technology should be an accelerator, not a bottleneck.
+                  Our team of engineers, designers, and AI specialists work at the intersection
                   of creativity and high-end engineering.
                 </p>
                 <p>
-                  We are an AI-first agency. We don't just use tools; we build them. 
+                  We are an AI-first agency. We don't just use tools; we build them.
                   Our philosophy is centered around modularity, speed, and uncompromising quality.
                 </p>
               </div>

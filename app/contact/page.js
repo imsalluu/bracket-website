@@ -25,9 +25,9 @@ export default function Contact() {
               
               <div className="space-y-8">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@bracket.agency" },
-                  { icon: Phone, label: "Phone", value: "+1 (555) 000-BRAK" },
-                  { icon: MapPin, label: "Office", value: "Remote / San Francisco" },
+                  { icon: Mail, label: "Official Email", value: "thebracket.agency@gmail.com" },
+                  { icon: Mail, label: "Support Email", value: "support.thebracket@gmail.com" },
+                  { icon: MapPin, label: "Office", value: "Remote" },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-6 items-center">
                     <div className="w-12 h-12 rounded-xl bg-bracket-gray flex items-center justify-center text-primary">
@@ -35,7 +35,12 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500 mb-1">{item.label}</p>
-                      <p className="text-lg font-bold">{item.value}</p>
+                      <a 
+                        href={`mailto:${item.value}`}
+                        className="text-lg font-bold hover:text-primary transition-colors"
+                      >
+                        {item.value}
+                      </a>
                     </div>
                   </div>
                 ))}

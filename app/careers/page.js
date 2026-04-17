@@ -72,7 +72,7 @@ export default function Careers() {
           <div className="mt-20 p-12 rounded-[3rem] border border-white/10 bg-primary/5 text-center">
             <h3 className="text-2xl font-bold mb-4">Don't see a fit?</h3>
             <p className="text-gray-400 mb-8">Send us your portfolio anyway. We're always looking for geniuses.</p>
-            <a href="mailto:careers@bracket.agency" className="text-primary font-bold hover:underline">careers@bracket.agency</a>
+            <a href="mailto:thebracket.agency@gmail.com" className="text-primary font-bold">thebracket.agency@gmail.com</a>
           </div>
         </Section>
       </main>

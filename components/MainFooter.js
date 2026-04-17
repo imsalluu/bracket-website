@@ -67,7 +67,7 @@ export default function Footer() {
             <p className="text-gray-400 max-w-sm mb-8 leading-relaxed">
               We build high-performance digital systems that help forward-thinking brands scale through software, AI, and automation.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 mb-8">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
@@ -78,6 +78,12 @@ export default function Footer() {
                 </a>
               ))}
             </div>
+            <a 
+              href="mailto:thebracket.agency@gmail.com"
+              className="text-sm font-bold text-gray-500 hover:text-primary transition-colors"
+            >
+              thebracket.agency@gmail.com
+            </a>
           </div>
 
           {footerLinks.map((group) => (
