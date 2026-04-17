@@ -6,44 +6,34 @@ import CustomCursor from "@/components/CustomCursor";
 import Section from "@/components/Section";
 import ProjectCard from "@/components/ProjectCard";
 import TestimonialSlider from "@/components/TestimonialSlider";
+import { getProjects, getSiteSettings } from "@/lib/api";
 
-const featuredProjects = [
-  {
-    title: "Quantum AI Dashboard",
-    description: "Multi-agent orchestration platform for enterprise analytics.",
-    tags: ["AI", "Next.js", "Python"],
-    slug: "quantum-ai"
-  },
-  {
-    title: "Nexus E-Commerce",
-    description: "High-performance headless commerce with 99.9% uptime.",
-    tags: ["Web", "Shopify", "React"],
-    slug: "nexus-commerce"
-  },
-  {
-    title: "AutoFlow System",
-    description: "Custom n8n automation for supply chain management.",
-    tags: ["Automation", "n8n", "Node.js"],
-    slug: "autoflow"
-  }
-];
+export default async function Home() {
+  const projects = await getProjects();
+  const settings = await getSiteSettings();
+  
+  // Use DB data or fallback to defaults
+  const featuredProjects = projects.length > 0 ? projects.slice(0, 3) : [
+    {
+      title: "Quantum AI Dashboard",
+      description: "Multi-agent orchestration platform for enterprise analytics.",
+      tags: ["AI", "Next.js", "Python"],
+      slug: "quantum-ai"
+    },
+    {
+      title: "Nexus E-Commerce",
+      description: "High-performance headless commerce with 99.9% uptime.",
+      tags: ["Web", "Shopify", "React"],
+      slug: "nexus-commerce"
+    },
+    {
+      title: "AutoFlow System",
+      description: "Custom n8n automation for supply chain management.",
+      tags: ["Automation", "n8n", "Node.js"],
+      slug: "autoflow"
+    }
+  ];
 
-const testimonials = [
-  {
-    name: "Sarah Chen",
-    role: "CTO at TechFlow",
-    text: "Bracket transformed our legacy systems into a modern powerhouse. Their AI agents saved us 40+ hours a week.",
-    avatar: "SC"
-  },
-  {
-    name: "Marc Jensen",
-    role: "Founder of Solas",
-    text: "The most professional agency we've worked with. Pixel-perfect execution and futuristic design mindset.",
-    avatar: "MJ"
-  }
-];
-
-export default function Home() {
   return (
     <>
       <CustomCursor />
@@ -73,17 +63,16 @@ export default function Home() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                The Future of Digital Systems
+                {settings.hero_badge || "The Future of Digital Systems"}
               </div>
               
               <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tight leading-[1.1]">
-                We Build Digital <br />
-                <span className="text-gradient">Systems That Scale</span>
+                {settings.hero_title_part1 || "We Build Digital"} <br />
+                <span className="text-gradient">{settings.hero_title_part2 || "Systems That Scale"}</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-                Bracket is a boutique agency focused on crafting high-performance software, 
-                AI agents, and automation workflows for the next generation of business.
+                {settings.hero_subtitle || "Bracket is a boutique agency focused on crafting high-performance software, AI agents, and automation workflows for the next generation of business."}
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

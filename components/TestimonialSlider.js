@@ -2,43 +2,50 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const testimonials = [
-  { name: "Sarah Chen", role: "CTO at TechFlow", text: "Bracket transformed our legacy systems into a modern powerhouse. Their AI agents saved us 40+ hours a week.", avatar: "SC" },
-  { name: "Marc Jensen", role: "Founder of Solas", text: "The most professional agency we've worked with. Pixel-perfect execution and futuristic design mindset.", avatar: "MJ" },
-  { name: "Elena Rodriguez", role: "Product Manager at Velo", text: "Their automation workflows eliminated all our manual data entry errors. Highly recommended!", avatar: "ER" },
-  { name: "David Kim", role: "CEO of Arkive", text: "The speed of delivery without compromising quality was impressive. Bracket is our go-to partner.", avatar: "DK" },
-  { name: "Jessica Walsh", role: "Creative Director at Studio X", text: "Unmatched aesthetic sense combined with rock-solid engineering. Truly a high-end agency.", avatar: "JW" },
-  { name: "Alex Rivera", role: "Co-Founder of Zenith", text: "Our multi-agent AI system developed by Bracket has revolutionised our customer support.", avatar: "AR" },
-  { name: "Sophie Muller", role: "Operations Head at Logix", text: "Seamless transition to a headless commerce architecture. Our page speeds doubled overnight.", avatar: "SM" },
-  { name: "Thomas Wright", role: "Tech Lead at Nexus", text: "The code quality is exceptional. Their team feels like an extension of our own.", avatar: "TW" },
-  { name: "Amara Okoro", role: "VP Engineering at Flow", text: "Scaling our infrastructure was a breeze with Bracket's modular approach.", avatar: "AO" },
-  { name: "Liam O'Brien", role: "Founder of Spark", text: "Intuitive dashboards and powerful backend integrations. They really understand business needs.", avatar: "LO" },
-  { name: "Chloe Dupont", role: "Marketing Lead at Aura", text: "Our new website hasn't just improved our brand image; it's driving significantly higher conversions.", avatar: "CD" },
-  { name: "Jordan Smith", role: "Systems Architect at Core", text: "The most sophisticated automation workflows I've seen. Bracket is in a league of their own.", avatar: "JS" }
-];
+import { getTestimonials } from "@/lib/api";
 
 export default function TestimonialSlider() {
+  const [items, setItems] = useState([]);
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const nextStep = useCallback(() => {
-    setDirection(1);
-    setIndex((prev) => (prev + 1) % testimonials.length);
+  useEffect(() => {
+    const fetchTestis = async () => {
+      const data = await getTestimonials();
+      if (data && data.length > 0) {
+        setItems(data);
+      } else {
+        // Fallback
+        setItems([
+          { name: "Sarah Chen", role: "CTO at TechFlow", content: "Bracket transformed our legacy systems into a modern powerhouse. Their AI agents saved us 40+ hours a week." },
+          { name: "Marc Jensen", role: "Founder of Solas", content: "The most professional agency we've worked with. Pixel-perfect execution and futuristic design mindset." }
+        ]);
+      }
+    };
+    fetchTestis();
   }, []);
+
+  const nextStep = useCallback(() => {
+    if (items.length === 0) return;
+    setDirection(1);
+    setIndex((prev) => (prev + 1) % items.length);
+  }, [items.length]);
 
   const prevStep = useCallback(() => {
+    if (items.length === 0) return;
     setDirection(-1);
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  }, []);
+    setIndex((prev) => (prev - 1 + items.length) % items.length);
+  }, [items.length]);
 
   useEffect(() => {
+    if (items.length === 0) return;
     const timer = setInterval(nextStep, 5000);
     return () => clearInterval(timer);
-  }, [nextStep]);
+  }, [nextStep, items.length]);
 
   const getCardIndex = (offset) => {
-    return (index + offset + testimonials.length) % testimonials.length;
+    if (items.length === 0) return 0;
+    return (index + offset + items.length) % items.length;
   };
 
   const cardVariants = {
@@ -61,6 +68,8 @@ export default function TestimonialSlider() {
     }),
   };
 
+  if (items.length === 0) return null;
+
   return (
     <div className="relative w-full overflow-hidden py-32 px-4">
       <div className="max-w-7xl mx-auto relative h-[500px] flex items-center justify-center">
@@ -80,15 +89,15 @@ export default function TestimonialSlider() {
                {"★".repeat(5)}
              </div>
              <p className="text-2xl md:text-3xl font-medium mb-10 leading-relaxed italic text-white">
-               "{testimonials[index].text}"
+               "{items[index].content}"
              </p>
              <div className="flex items-center gap-4">
                <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-black font-black text-xl">
-                 {testimonials[index].avatar}
+                 {items[index].name.charAt(0)}
                </div>
                <div>
-                 <h4 className="font-bold text-white text-lg">{testimonials[index].name}</h4>
-                 <p className="text-gray-500 text-sm uppercase tracking-widest">{testimonials[index].role}</p>
+                 <h4 className="font-bold text-white text-lg">{items[index].name}</h4>
+                 <p className="text-gray-500 text-sm uppercase tracking-widest">{items[index].role}</p>
                </div>
              </div>
           </motion.div>
@@ -106,13 +115,8 @@ export default function TestimonialSlider() {
                {"★".repeat(5)}
              </div>
              <p className="text-2xl font-medium mb-10 leading-relaxed italic text-gray-500 line-clamp-2">
-               "{testimonials[getCardIndex(-1)].text}"
+               "{items[getCardIndex(-1)].content}"
              </p>
-             <div className="flex items-center gap-4 opacity-50">
-               <div className="w-14 h-14 rounded-full bg-gray-600 flex items-center justify-center text-black font-black text-xl">
-                 {testimonials[getCardIndex(-1)].avatar}
-               </div>
-             </div>
           </motion.div>
 
           {/* Next Card (Background) */}
@@ -128,19 +132,14 @@ export default function TestimonialSlider() {
                {"★".repeat(5)}
              </div>
              <p className="text-2xl font-medium mb-10 leading-relaxed italic text-gray-500 line-clamp-2">
-               "{testimonials[getCardIndex(1)].text}"
+               "{items[getCardIndex(1)].content}"
              </p>
-             <div className="flex items-center gap-4 opacity-50">
-               <div className="w-14 h-14 rounded-full bg-gray-600 flex items-center justify-center text-black font-black text-xl">
-                 {testimonials[getCardIndex(1)].avatar}
-               </div>
-             </div>
           </motion.div>
         </AnimatePresence>
 
         {/* Navigation Buttons */}
         <div className="absolute inset-x-0 -bottom-10 h-10 flex items-center justify-center gap-4 z-30">
-          {testimonials.map((_, i) => (
+          {items.map((_, i) => (
             <button
               key={i}
               onClick={() => {
