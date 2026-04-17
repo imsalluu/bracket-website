@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { clsx } from "clsx";
@@ -12,16 +13,17 @@ function cn(...inputs) {
 }
 
 const navLinks = [
+  { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "About", href: "/about" },
   { name: "Careers", href: "/careers" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,10 +60,16 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium hover:text-primary transition-colors relative group"
+              className={cn(
+                "text-sm font-medium transition-colors relative group",
+                pathname === link.href ? "text-primary" : "text-white/70 hover:text-primary"
+              )}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              <span className={cn(
+                "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all",
+                pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+              )} />
             </Link>
           ))}
           <Link
@@ -94,7 +102,10 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-lg font-medium hover:text-primary"
+                className={cn(
+                  "text-lg font-medium transition-colors",
+                  pathname === link.href ? "text-primary" : "text-white/70 hover:text-primary"
+                )}
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

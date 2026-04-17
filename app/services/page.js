@@ -1,8 +1,9 @@
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import MainFooter from "@/components/MainFooter";
 import CustomCursor from "@/components/CustomCursor";
 import Section from "@/components/Section";
-import { Code, Cpu, Globe, Layers, ShieldCheck, Zap } from "lucide-react";
+import { Code, Cpu, Globe, Layers, ShieldCheck, Zap, Paintbrush, Smartphone, Cloud, TrendingUp } from "lucide-react";
 
 export default function Services() {
   const services = [
@@ -21,6 +22,20 @@ export default function Services() {
       icon: Globe
     },
     {
+      id: "uiux",
+      title: "UI/UX Design",
+      description: "Crafting beautiful, intuitive, and user-centric interfaces that deliver premium experiences.",
+      features: ["Interface Design", "User Experience Audit", "Prototyping", "Design Systems"],
+      icon: Paintbrush
+    },
+    {
+      id: "apps",
+      title: "Mobile App Development",
+      description: "Native and cross-platform mobile applications for Android and iOS with seamless performance.",
+      features: ["iOS Development", "Android Development", "React Native", "Flutter Solutions"],
+      icon: Smartphone
+    },
+    {
       id: "ai",
       title: "AI Agent Development",
       description: "Custom AI agents and Large Language Model (LLM) integrations for your business.",
@@ -33,6 +48,20 @@ export default function Services() {
       description: "Seamless automation using n8n and Make.com to eliminate manual data entry.",
       features: ["n8n Workflows", "Make.com Scenarios", "Integrations", "Error Handling"],
       icon: Zap
+    },
+    {
+      id: "deployment",
+      title: "Deployment & Publishing",
+      description: "End-to-end cloud infrastructure, CI/CD pipelines, and app store publishing support.",
+      features: ["AWS/Vercel Hosting", "CI/CD Setup", "App Store Publishing", "Infrastructure as Code"],
+      icon: Cloud
+    },
+    {
+      id: "strategy",
+      title: "Digital Strategy & SEO",
+      description: "Data-driven strategies to boost your online visibility and drive sustainable growth.",
+      features: ["SEO Optimization", "Conversion Rate Opt", "Digital Audits", "Growth Strategy"],
+      icon: TrendingUp
     }
   ];
 
@@ -70,9 +99,12 @@ export default function Services() {
                     </div>
                   ))}
                 </div>
-                <button className="mt-12 px-8 py-4 bg-white text-black font-black rounded-full hover:bg-primary transition-all">
+                <Link 
+                  href="/contact" 
+                  className="inline-block mt-12 px-8 py-4 bg-white text-black font-black rounded-full hover:bg-primary transition-all"
+                >
                   Inquire Now
-                </button>
+                </Link>
               </div>
               <div className={`aspect-video rounded-[3rem] bg-bracket-black border border-white/5 relative overflow-hidden p-8 flex items-center justify-center ${index % 2 === 0 ? "" : "lg:order-1"}`}>
                 <div className="w-full h-full rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-center">

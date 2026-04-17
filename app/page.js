@@ -5,6 +5,7 @@ import MainFooter from "@/components/MainFooter";
 import CustomCursor from "@/components/CustomCursor";
 import Section from "@/components/Section";
 import ProjectCard from "@/components/ProjectCard";
+import TestimonialSlider from "@/components/TestimonialSlider";
 
 const featuredProjects = [
   {
@@ -189,31 +190,10 @@ export default function Home() {
 
         {/* Testimonials */}
         <Section className="py-32 bg-bracket-dark/30 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl md:text-6xl font-black mb-20 text-center">What Clients Say</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {testimonials.map((t, i) => (
-                <div key={i} className="bg-bracket-black p-12 rounded-[3rem] border border-white/5 relative group hover:border-primary/20 transition-all">
-                  <div className="text-primary mb-8">
-                    {"★".repeat(5)}
-                  </div>
-                  <p className="text-2xl font-medium mb-10 leading-relaxed italic">
-                    "{t.text}"
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-black font-black text-xl">
-                      {t.avatar}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white text-lg">{t.name}</h4>
-                      <p className="text-gray-500 text-sm uppercase tracking-widest">{t.role}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <h2 className="text-4xl md:text-6xl font-black mb-10">What Clients Say</h2>
           </div>
+          <TestimonialSlider />
         </Section>
 
         {/* Logos / Trusted By */}
